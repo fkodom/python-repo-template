@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+
+import subprocess
+from pathlib import Path
+from typing import Dict, List, Optional
+
+THIS_FILE = Path(__file__).expanduser().absolute()
+REPO_DIR = THIS_FILE.parent
+
+
+def get_git_info(key: str, repo_path: Path) -> str:
+    cmd = ["git", "config", key]
+    output = subprocess.run(cmd, capture_output=True, check=True, cwd=repo_path)
+    return output.stdout.decode().strip()
+
+
+def recursive_get_files(
+    root_dir: Path, excepted_files: Optional[List[str]] = None
+) -> List[str]:
+    if excepted_files is None:
+        excepted_files = []
+    return [x for x in root_dir.glob("**/*") if x not in excepted_files and x.is_file()]
+
+
+PLACEHOLDERS = {
+    "{{REPO_NAME}}": REPO_DIR.name,
+    "{{GIT_USER_NAME}}": get_git_info("user.name", REPO_DIR),
+    "{{GIT_USER_EMAIL}}": get_git_info("user.email", REPO_DIR),
+    "{{REPO_OWNER}}": get_git_info("remote.origin.url", REPO_DIR)
+    .replace("https://github.com/", "")
+    .replace("git@github.com:", "")
+    .split("/")[0],
+}
+
+EXCEPTED_FILES = [THIS_FILE] + recursive_get_files(REPO_DIR / ".git")
+
+
+def substitute_placeholders(filename: str, placeholder_map: Dict[str, str]):
+    filename = Path(filename)
+    try:
+        with filename.open("r") as fh:
+            content = fh.read()
+    except UnicodeDecodeError:
+        # file is binary
+        return
+    changed = False
+    for placeholder, value in placeholder_map.items():
+        if placeholder in content:
+            content = content.replace(placeholder, value)
+            changed = True
+    if changed:
+        with filename.open("w") as fh:
+            fh.write(content)
+
+
+def create_src_dir():
+    src_dir = REPO_DIR / REPO_DIR.name
+    src_dir.mkdir(parents=True, exist_ok=True)
+    (src_dir / "__init__.py").touch()
+
+
+def rename_github_dir():
+    (REPO_DIR / "github").rename(REPO_DIR / ".github")
+
+
+def cleanup():
+    THIS_FILE.unlink()
+
+
+def git_commit(repo_path: Path):
+    add_cmd = ["git", "add", "."]
+    subprocess.run(add_cmd, cwd=repo_path, check=True)
+    commit_cmd = ["git", "commit", "-m", "Templatize"]
+    subprocess.run(commit_cmd, cwd=repo_path, check=True)
+
+
+def main():
+    files = recursive_get_files(REPO_DIR, EXCEPTED_FILES)
+    for filename in files:
+        substitute_placeholders(filename, placeholder_map=PLACEHOLDERS)
+    create_src_dir()
+    rename_github_dir()
+    cleanup()
+    git_commit(REPO_DIR)
+
+
+if __name__ == "__main__":
+    main()
