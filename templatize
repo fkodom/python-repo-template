@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import subprocess
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -55,7 +56,7 @@ def substitute_placeholders(filename: str, placeholder_map: Dict[str, str]):
 
 def create_src_dir():
     src_dir = REPO_DIR / REPO_DIR.name
-    src_dir.mkdir(parents=True, exist_ok=True)
+    os.makedirs(str(src_dir).replace("-", "_"), exist_ok=True)
     (src_dir / "__init__.py").touch()
 
 
