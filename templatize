@@ -54,12 +54,6 @@ def substitute_placeholders(filename: str, placeholder_map: Dict[str, str]):
             fh.write(content)
 
 
-def create_src_dir():
-    src_dir = REPO_DIR / REPO_DIR.name
-    os.makedirs(str(src_dir).replace("-", "_"), exist_ok=True)
-    (src_dir / "__init__.py").touch()
-
-
 def cleanup():
     THIS_FILE.unlink()
 
@@ -75,7 +69,6 @@ def main():
     files = recursive_get_files(REPO_DIR, EXCEPTED_FILES)
     for filename in files:
         substitute_placeholders(filename, placeholder_map=PLACEHOLDERS)
-    create_src_dir()
     cleanup()
 
 
