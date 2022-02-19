@@ -59,10 +59,6 @@ def create_src_dir():
     (src_dir / "__init__.py").touch()
 
 
-def rename_github_dir():
-    (REPO_DIR / "github").rename(REPO_DIR / ".github")
-
-
 def cleanup():
     THIS_FILE.unlink()
 
@@ -79,7 +75,6 @@ def main():
     for filename in files:
         substitute_placeholders(filename, placeholder_map=PLACEHOLDERS)
     create_src_dir()
-    rename_github_dir()
     cleanup()
 
 
