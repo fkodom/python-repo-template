@@ -17,15 +17,7 @@ repos:
 
   - id: flake8
     name: flake8
-    stages: [push]
+    stages: [commit]
     language: system
     entry: flake8
     types: [python]
-
-  - id: mypy
-    name: mypy
-    stages: [push]
-    language: system
-    entry: mypy
-    types: [python]
-    require_serial: true

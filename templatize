@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
-import os
 import subprocess
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 THIS_FILE = Path(__file__).expanduser().absolute()
 REPO_DIR = THIS_FILE.parent
@@ -16,8 +15,10 @@ def get_git_info(key: str, repo_path: Path) -> str:
 
 
 def recursive_get_files(
-    root_dir: Path, excepted_files: Optional[List[str]] = None
-) -> List[str]:
+    root_dir: Union[Path, str], excepted_files: Optional[List[str]] = None
+) -> List[Path]:
+    if isinstance(root_dir, str):
+        root_dir = Path(root_dir)
     if excepted_files is None:
         excepted_files = []
     return [x for x in root_dir.glob("**/*") if x not in excepted_files and x.is_file()]
@@ -36,8 +37,11 @@ PLACEHOLDERS = {
 EXCEPTED_FILES = [THIS_FILE] + recursive_get_files(REPO_DIR / ".git")
 
 
-def substitute_placeholders(filename: str, placeholder_map: Dict[str, str]):
-    filename = Path(filename)
+def substitute_placeholders(
+    filename: Union[str, Path], placeholder_map: Dict[str, str]
+):
+    if isinstance(filename, str):
+        filename = Path(filename)
     try:
         with filename.open("r") as fh:
             content = fh.read()
@@ -56,13 +60,6 @@ def substitute_placeholders(filename: str, placeholder_map: Dict[str, str]):
 
 def cleanup():
     THIS_FILE.unlink()
-
-
-def git_commit(repo_path: Path):
-    add_cmd = ["git", "add", "."]
-    subprocess.run(add_cmd, cwd=repo_path, check=True)
-    commit_cmd = ["git", "commit", "-m", "Templatize"]
-    subprocess.run(commit_cmd, cwd=repo_path, check=True)
 
 
 def main():
