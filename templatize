@@ -26,6 +26,7 @@ def recursive_get_files(
 
 PLACEHOLDERS = {
     "{{REPO_NAME}}": REPO_DIR.name,
+    "{{REPO_NAME_ALLCAPS}}": REPO_DIR.name.upper().replace("-", "_"),
     "{{GIT_USER_NAME}}": get_git_info("user.name", REPO_DIR),
     "{{GIT_USER_EMAIL}}": get_git_info("user.email", REPO_DIR),
     "{{REPO_OWNER}}": get_git_info("remote.origin.url", REPO_DIR)
