@@ -1,8 +1,9 @@
-name: Test
+name: Test Slow
 
 on:
   workflow_dispatch: {}
-  push: {}
+  pull_request:
+    types: [opened]
 
 jobs:
   test:
@@ -28,9 +29,4 @@ jobs:
           pip install -e .[test]
 
       - name: Test
-        run: |
-          black --check .
-          isort --diff .
-          flake8 .
-          pytest --cov --cov-report term-missing --cov-fail-under 80 tests/
-          mypy .
+        run: pytest --slow --cov --cov-report term-missing --cov-fail-under 80 tests/
