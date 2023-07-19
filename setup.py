@@ -18,7 +18,7 @@ def get_version_tag() -> str:
     return version
 
 
-extras_require = {"test": ["black", "flake8", "isort", "mypy", "pytest", "pytest-cov"]}
+extras_require = {"test": ["black", "ruff", "mypy", "pytest", "pytest-cov"]}
 extras_require["dev"] = ["pre-commit", *extras_require["test"]]
 all_require = [r for reqs in extras_require.values() for r in reqs]
 extras_require["all"] = all_require
@@ -40,5 +40,5 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.8",
 )
