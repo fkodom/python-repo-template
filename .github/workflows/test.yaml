@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        python: ["3.7", "3.8", "3.9", "3.10"]
+        python: ["3.8", "3.9", "3.10"]
 
     steps:
       - name: Checkout
@@ -23,14 +23,22 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
+      - name: Templatize
+        # Templatize the repo before attempting to run tests.  (Tests will fail
+        # otherwise, due to syntax errors.)
+        # NOTE: Check if the 'templatize' script exists, so that this doesn't
+        # immediately fail for repos that have already run the script.
+        run: |
+          if test -f "templatize"; then
+              ./templatize
+          fi
+
       - name: Install Package
         run: |
           pip install -e .[test]
 
       - name: Test
         run: |
-          black --check .
-          isort --diff .
-          flake8 .
+          ruff .
           pytest --cov --cov-report term-missing --cov-fail-under 80 tests/
-          mypy .
+          mypy
