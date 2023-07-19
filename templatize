@@ -16,9 +16,9 @@ def get_git_info(key: str) -> str:
 def get_repo_owner_and_name() -> Tuple[str, str]:
     owner, name = (
         get_git_info("remote.origin.url")
-        .removeprefix("https://github.com/")
-        .removeprefix("git@github.com:")
-        .removesuffix(".git")
+        .replace("https://github.com/", "")
+        .replace("git@github.com:", "")
+        .replace(".git", "")
         .split("/", maxsplit=1)
     )
     return owner, name
