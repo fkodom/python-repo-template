@@ -1,3 +1,5 @@
-def test_missing():
-    # DELETE ME
-    raise NotImplementedError("Please write some tests")
+import {{REPO_NAME_SNAKECASE}}
+
+
+def test_nothing():
+    print({{REPO_NAME_SNAKECASE}})
