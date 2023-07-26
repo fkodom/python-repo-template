@@ -25,9 +25,7 @@ exclude = ["tests"]
 [project.optional-dependencies]
 test = [
     "black",
-    "kaleido",
     "mypy",
-    "plotly",
     "pre-commit",
     "pytest",
     "pytest-cov",
