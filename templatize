@@ -39,7 +39,8 @@ PLACEHOLDERS = {
     "{{REPO_NAME_SNAKECASE}}": REPO_NAME.replace("-", "_"),
     "{{REPO_NAME_ALLCAPS}}": REPO_NAME.upper().replace("-", "_"),
     "{{GIT_USER_NAME}}": get_git_info("user.name"),
-    "{{GIT_USER_EMAIL}}": get_git_info("user.email"),
+    # NOTE: Need a default value for email, so pyproject is valid in GHA workflows.
+    "{{GIT_USER_EMAIL}}": get_git_info("user.email") or "user@mail.com",
 }
 
 
