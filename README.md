@@ -22,15 +22,14 @@ Tests run automatically through GitHub Actions.
 
 You can also run tests manually with `pytest`:
 ```bash
-pytest {{REPO_NAME}}
-
+pytest
 # For all tests, including slow ones:
-pytest --slow {{REPO_NAME}}
+pytest --slow
 ```
 
 
-## Release
+## Release (Optional)
 
-[Optional] Requires either PyPI or Docker GHA workflows to be enabled.
+**NOTE**: Requires `publish.yaml` workflow to be enabled., and a valid PyPI token to be set as `PYPI_API_TOKEN` in the repo secrets.
 
-Just tag a new release in this repo, and GHA will automatically publish Python wheels and/or Docker images.
+Tag a new release in this repo, and GHA will automatically publish Python wheels.
