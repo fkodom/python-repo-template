@@ -6,7 +6,7 @@ name = "{{REPO_NAME}}"
 authors = [
     {name = "{{GIT_USER_NAME}}", email = "{{GIT_USER_EMAIL}}"},
 ]
-description = "project description"
+description = "{{REPO_NAME}}"
 license = {text = "MIT"}
 dynamic = ["version", "readme"]  # NOTE: Must be in sync with [tool.setuptools.dynamic] below
 dependencies = []
@@ -16,7 +16,7 @@ classifiers = ["Programming Language :: Python :: 3"]
 [tool.setuptools.dynamic]
 # NOTE: Must be in sync with 'project.dynamic' above
 version = {attr = "{{REPO_NAME_SNAKECASE}}.VERSION"}
-readme = {file = ["README.md"]}
+readme = {file = ["README.md"], content-type = "text/markdown"}
 
 [tool.setuptools.packages.find]
 exclude = ["tests"]
