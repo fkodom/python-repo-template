@@ -1,5 +1,21 @@
 # {{REPO_NAME}}
 
+## Usage
+
+Create a new repository, using this one as a template.  Then, run the `templatize` script:
+
+```bash
+./templatize
+```
+
+This replaces all `{{REPO_NAME}}` and similar placeholders, so the repo is properly configured with your project name, your username and email, etc.  Commit the changes, and you're ready to go!
+
+```bash
+git add .
+git commit -m "Templatize"
+git push
+```
+
 
 ## Install
 
