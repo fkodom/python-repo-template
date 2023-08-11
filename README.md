@@ -1,20 +1,21 @@
 # {{REPO_NAME}}
 
-## Usage
+How to use this template:
 
-Create a new repository, using this one as a template.  Then, run the `templatize` script:
+1. Create a new repository, using this one as a template.
+2. Run the `templatize` script:
+    ```bash
+    ./templatize
+    ```
 
-```bash
-./templatize
-```
-
-This replaces all `{{REPO_NAME}}` and similar placeholders, so the repo is properly configured with your project name, your username and email, etc.  Commit the changes, and you're ready to go!
-
-```bash
-git add .
-git commit -m "Templatize"
-git push
-```
+    This updates placeholders like `{{REPO_NAME}}`, so everything is configured with your username, repo name, email, etc.
+3. Commit and push the changes.
+    ```bash
+    git add .
+    git commit -m "Templatize"
+    git push
+    ```
+4. (Probably) delete this section of the README.
 
 
 ## Install
