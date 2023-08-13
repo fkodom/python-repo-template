@@ -1,6 +1,9 @@
 # {{REPO_NAME}}
 
-How to use this template:
+A simple template for Python projects, with CI/CD configured through GitHub Actions.  Compatible with any virtual environment manager (e.g. `venv`, `pyenv`, `poetry`, `conda`).
+
+
+## Usage
 
 1. Create a new repository, using this one as a template.
 2. Run the `templatize` script:
@@ -17,7 +20,6 @@ How to use this template:
     ```
 4. (Probably) delete this section of the README.
 
-
 ## Install
 
 ```bash
@@ -31,22 +33,17 @@ pre-commit install
 ```
 
 
-## Test
+## Tooling
 
-Tests run automatically through GitHub Actions.
-* Fast tests run on each push.
-* Slow tests (decorated with `@pytest.mark.slow`) run on each PR.
+| Tool | Description | Runs on |
+| --- | --- | --- |
+| [black](https://github.com/psf/black) | Code formatter | - `git commit` (through `pre-commit`) <br> - `git push` <br> - pull requests |
+| [ruff](https://github.com/astral-sh/ruff) | Code linter | - `git commit` (through `pre-commit`) <br> - `git push` <br> - pull requests |
+| [pytest](https://github.com/pytest-dev/pytest) | Unit testing framework | - `git push` <br> - pull requests |
+| [mypy](https://github.com/python/mypy) | Static type checker | - `git push` <br> - pull requests |
+| [pre-commit](https://github.com/pre-commit/pre-commit) | Pre-commit hooks | - `git commit` |
+| [twine](https://github.com/pypa/twine) $\dagger$ | PyPI package uploader | - New release (`git tag`) |
 
-You can also run tests manually with `pytest`:
-```bash
-pytest
-# For all tests, including slow ones:
-pytest --slow
-```
-
-
-## Release (Optional)
-
-**NOTE**: Requires `publish.yaml` workflow to be enabled., and a valid PyPI token to be set as `PYPI_API_TOKEN` in the repo secrets.
-
-Tag a new release in this repo, and GHA will automatically publish Python wheels.
+> $\dagger$ Requires enabling the `publish.yaml` workflow.  To activate, move the file from `.github/disabled-workflows/publish.yaml.disabled` to `.github/workflows/publish.yaml`, and set a valid PyPI token as `PYPI_API_TOKEN` in the repo secrets.
+>
+> Then tag a new release of this repo, and GHA will automatically build and publish a Python wheel (`.whl`) to PyPI.
