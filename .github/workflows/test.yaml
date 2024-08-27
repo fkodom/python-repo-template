@@ -39,6 +39,6 @@ jobs:
 
       - name: Test
         run: |
-          ruff .
+          ruff check .
           pytest --cov --cov-report term-missing --cov-fail-under 80 tests/
           mypy
