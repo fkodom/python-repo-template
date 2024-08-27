@@ -9,7 +9,7 @@ repos:
     types: [python]
 
   - id: ruff
-    name: ruff
+    name: ruff check
     stages: [commit]
     language: system
     entry: ruff
