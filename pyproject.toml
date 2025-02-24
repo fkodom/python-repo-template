@@ -40,8 +40,8 @@ line-length = 88
 
 [tool.mypy]
 files = "{{REPO_NAME_SNAKECASE}}/"
-check_untyped_defs = "true"
-ignore_missing_imports = "true"
+check_untyped_defs = true
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

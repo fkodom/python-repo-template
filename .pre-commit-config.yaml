@@ -3,14 +3,14 @@ repos:
   hooks:
   - id: black
     name: black
-    stages: [commit]
+    stages: [pre-commit]
     language: system
     entry: black
     types: [python]
 
   - id: ruff
     name: ruff check
-    stages: [commit]
+    stages: [pre-commit]
     language: system
     entry: ruff
     types: [python]
