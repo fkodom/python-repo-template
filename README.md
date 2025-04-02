@@ -1,6 +1,6 @@
 # {{REPO_NAME}}
 
-A simple template for Python projects, with CI/CD configured through GitHub Actions.  Compatible with any virtual environment manager (e.g. `venv`, `pyenv`, `poetry`, `conda`).
+A simple template for Python projects, with CI/CD configured through GitHub Actions.  Compatible with any virtual environment manager (e.g. `uv`, `venv`, `pyenv`, `poetry`, `conda`).
 
 
 ## Usage
