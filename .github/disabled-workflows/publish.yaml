@@ -9,6 +9,10 @@ on:
 env:
   PYTHON_VERSION: 3.11
 
+permissions:
+  contents: read    # required for 'actions/checkout@v2'
+  id-token: write  # required for 'Build and Publish'
+
 jobs:
   publish:
     runs-on: ubuntu-latest
