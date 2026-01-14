@@ -17,6 +17,8 @@ I want you to "templatize" a new Python repository (cloned from a GitHub repo te
 5. Update the README to give a brief description of the project.  If you are unable to infer the description based on the repo, please ask me for more details.
 6. Commit and push the changes.
     ```bash
+    # you'll need to re-activate the virtual environment here
+    source .venv/bin/activate
     git add .
     git commit -m "Templatize"
     git push
