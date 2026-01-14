@@ -6,29 +6,32 @@ A simple template for Python projects, with CI/CD configured through GitHub Acti
 ## Usage
 
 1. Create a new repository, using this one as a template.
-2. Run the `templatize` script:
+2. Install and open [Gemini CLI](https://github.com/google-gemini/gemini-cli), then run the `/templatize` command:
     ```bash
-    ./templatize
+    gemini run /templatize
     ```
 
-    This updates placeholders like `{{REPO_NAME}}`, so everything is configured with your username, repo name, email, etc.
-3. Commit and push the changes.
-    ```bash
-    git add .
-    git commit -m "Templatize"
-    git push
-    ```
-4. (Probably) delete this section of the README.
 
 ## Install
 
+> **Note:** For simplicity, I assume you are using [uv](https://docs.astral.sh/uv/getting-started/installation/), but this project is compatible with any virtual environment or package manager (`pip`, `venv`, `poetry`, `pipenv`, `conda`).
+
+If you have not already, create and activate a virtual environment for this project:
 ```bash
-pip install "{{REPO_NAME}} @ git+ssh://git@github.com/{{REPO_OWNER}}/{{REPO_NAME}}.git"
+uv venv --python 3.12
+source .venv/bin/activate
+```
 
-# Install all dev dependencies (tests etc.)
-pip install "{{REPO_NAME}}[test] @ git+ssh://git@github.com/{{REPO_OWNER}}/{{REPO_NAME}}.git"
+Then, install the package:
+```bash
+uv sync
+```
 
-# Setup pre-commit hooks
+### For Developers
+
+If you plan to contribute to the project, you should also install development dependencies and pre-commit hoooks:
+```bash
+uv sync --all-extras
 pre-commit install
 ```
 

@@ -10,7 +10,7 @@ description = "{{REPO_NAME}}"
 license = {text = "MIT"}
 dynamic = ["version", "readme"]  # NOTE: Must be in sync with [tool.setuptools.dynamic] below
 dependencies = []
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 classifiers = ["Programming Language :: Python :: 3"]
 
 [tool.setuptools.dynamic]
@@ -24,12 +24,12 @@ exclude = ["tests"]
 # extra packages (e.g. pip install .[test])
 [project.optional-dependencies]
 test = [
-    "black",
     "mypy",
     "pre-commit",
     "pytest",
     "pytest-cov",
     "ruff",
+    "ty",
 ]
 
 
