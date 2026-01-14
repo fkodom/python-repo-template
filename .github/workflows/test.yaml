@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        python: ["3.10", "3.11", "3.12"]
+        python: ["3.11", "3.12"]
 
     steps:
       - name: Checkout
@@ -39,6 +39,7 @@ jobs:
 
       - name: Test
         run: |
+          uv run ruff format --check .
           uv run ruff check .
+          uv run ty check .
           uv run pytest --cov --cov-report term-missing --cov-fail-under 80 tests/
-          uv run mypy

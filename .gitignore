@@ -1,4 +1,5 @@
 .vscode
+uv.lock
 worktrees/
 
 # Byte-compiled / optimized / DLL files

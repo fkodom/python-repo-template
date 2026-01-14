@@ -1,34 +1,28 @@
 # {{REPO_NAME}}
 
-A simple template for Python projects, with CI/CD configured through GitHub Actions.  Compatible with any virtual environment manager (e.g. `uv`, `venv`, `pyenv`, `poetry`, `conda`).
+A simple template for Python projects, with CI/CD configured through GitHub Actions.
 
 
 ## Usage
 
 1. Create a new repository, using this one as a template.
-2. Run the `templatize` script:
+2. Install and open [Gemini CLI](https://github.com/google-gemini/gemini-cli), then run the `/templatize` command:
     ```bash
-    ./templatize
+    gemini run /templatize
     ```
 
-    This updates placeholders like `{{REPO_NAME}}`, so everything is configured with your username, repo name, email, etc.
-3. Commit and push the changes.
-    ```bash
-    git add .
-    git commit -m "Templatize"
-    git push
-    ```
-4. (Probably) delete this section of the README.
 
 ## Install
 
+> **Note:** For simplicity, I assume you are using [uv](https://docs.astral.sh/uv/getting-started/installation/), but this project is compatible with any virtual environment or package manager (`pip`, `venv`, `poetry`, `pipenv`, `conda`).
+
 ```bash
-pip install "{{REPO_NAME}} @ git+ssh://git@github.com/{{REPO_OWNER}}/{{REPO_NAME}}.git"
+# Create and activate a new virtual environment
+uv venv --python 3.12
+source .venv/bin/activate
 
-# Install all dev dependencies (tests etc.)
-pip install "{{REPO_NAME}}[test] @ git+ssh://git@github.com/{{REPO_OWNER}}/{{REPO_NAME}}.git"
-
-# Setup pre-commit hooks
+# Install development dependencies and pre-commit hoooks
+uv sync --all-extras
 pre-commit install
 ```
 
@@ -37,11 +31,9 @@ pre-commit install
 
 | Tool | Description | Runs on |
 | --- | --- | --- |
-| [black](https://github.com/psf/black) | Code formatter | - `git commit` (through `pre-commit`) <br> - `git push` <br> - pull requests |
 | [ruff](https://github.com/astral-sh/ruff) | Code linter | - `git commit` (through `pre-commit`) <br> - `git push` <br> - pull requests |
+| [ty](https://docs.astral.sh/ty/) | Static type checker | - `git commit` <br> - pull requests |
 | [pytest](https://github.com/pytest-dev/pytest) | Unit testing framework | - `git push` <br> - pull requests |
-| [mypy](https://github.com/python/mypy) | Static type checker | - `git push` <br> - pull requests |
-| [pre-commit](https://github.com/pre-commit/pre-commit) | Pre-commit hooks | - `git commit` |
 | [twine](https://github.com/pypa/twine) $\dagger$ | PyPI package uploader | - New release (`git tag`) |
 
 > $\dagger$ Requires enabling the `publish.yaml` workflow.  To activate, move the file from `.github/disabled-workflows/publish.yaml.disabled` to `.github/workflows/publish.yaml`, and set a valid PyPI token as `PYPI_API_TOKEN` in the repo secrets.

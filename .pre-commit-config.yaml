@@ -1,16 +1,23 @@
 repos:
 - repo: local
   hooks:
-  - id: black
-    name: black
+  - id: ruff-format
+    name: ruff format
     stages: [pre-commit]
     language: system
-    entry: black
+    entry: ruff format
     types: [python]
 
-  - id: ruff
+  - id: ruff-check
     name: ruff check
     stages: [pre-commit]
     language: system
     entry: ruff check
+    types: [python]
+
+  - id: ty-check
+    name: ty check
+    stages: [pre-commit]
+    language: system
+    entry: ty check
     types: [python]
