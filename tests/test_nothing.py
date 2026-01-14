@@ -1,5 +1,5 @@
-import {{REPO_NAME_SNAKECASE}}
+import python_repo_template
 
 
 def test_nothing():
-    print({{REPO_NAME_SNAKECASE}})
+    print(python_repo_template)

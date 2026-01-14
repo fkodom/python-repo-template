@@ -1,15 +1,6 @@
-# {{REPO_NAME}}
+# python-repo-template
 
 A simple template for Python projects, with CI/CD configured through GitHub Actions.
-
-
-## Usage
-
-1. Create a new repository, using this one as a template.
-2. Install and open [Gemini CLI](https://github.com/google-gemini/gemini-cli), then run the `/templatize` command:
-    ```bash
-    gemini run /templatize
-    ```
 
 
 ## Install

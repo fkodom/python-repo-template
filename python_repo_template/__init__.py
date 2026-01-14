@@ -4,7 +4,7 @@ from subprocess import getoutput
 
 def get_version_tag() -> str:
     try:
-        env_key = "{{REPO_NAME_ALLCAPS}}_VERSION".upper()
+        env_key = "PYTHON_REPO_TEMPLATE_VERSION".upper()
         version = os.environ[env_key]
     except KeyError:
         version = getoutput("git describe --tags --abbrev=0")

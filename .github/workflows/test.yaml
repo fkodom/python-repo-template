@@ -23,16 +23,6 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
-      - name: Templatize
-        # Templatize the repo before attempting to run tests.  (Tests will fail
-        # otherwise, due to syntax errors.)
-        # NOTE: Check if the 'templatize' script exists, so that this doesn't
-        # immediately fail for repos that have already run the script.
-        run: |
-          if test -f "templatize"; then
-              ./templatize
-          fi
-
       - name: Install Package
         run: |
           uv pip install -e .[test]

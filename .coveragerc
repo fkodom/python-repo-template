@@ -1,5 +1,5 @@
 [run]
-source = {{REPO_NAME_SNAKECASE}}
+source = python_repo_template
 
 [report]
 exclude_lines =

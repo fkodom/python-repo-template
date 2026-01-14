@@ -2,11 +2,11 @@
 requires = ["setuptools", "setuptools-scm"]
 
 [project]
-name = "{{REPO_NAME}}"
+name = "python-repo-template"
 authors = [
-    {name = "{{GIT_USER_NAME}}", email = "{{GIT_USER_EMAIL}}"},
+    {name = "Frank Odom", email = "frank.odom.iii@gmail.com"},
 ]
-description = "{{REPO_NAME}}"
+description = "python-repo-template"
 license = {text = "MIT"}
 dynamic = ["version", "readme"]  # NOTE: Must be in sync with [tool.setuptools.dynamic] below
 dependencies = []
@@ -15,7 +15,7 @@ classifiers = ["Programming Language :: Python :: 3"]
 
 [tool.setuptools.dynamic]
 # NOTE: Must be in sync with 'project.dynamic' above
-version = {attr = "{{REPO_NAME_SNAKECASE}}.VERSION"}
+version = {attr = "python_repo_template.VERSION"}
 readme = {file = ["README.md"], content-type = "text/markdown"}
 
 [tool.setuptools.packages.find]
@@ -24,12 +24,12 @@ exclude = ["tests"]
 # extra packages (e.g. pip install .[test])
 [project.optional-dependencies]
 test = [
-    "mypy",
-    "pre-commit",
-    "pytest",
-    "pytest-cov",
-    "ruff",
-    "ty",
+    "mypy==1.19.1",
+    "pre-commit==4.5.1",
+    "pytest==9.0.2",
+    "pytest-cov==7.0.0",
+    "ruff==0.14.11",
+    "ty==0.0.11",
 ]
 
 
@@ -39,7 +39,7 @@ test = [
 line-length = 88
 
 [tool.mypy]
-files = "{{REPO_NAME_SNAKECASE}}/"
+files = "python_repo_template/"
 check_untyped_defs = true
 ignore_missing_imports = true
 
