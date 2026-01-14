@@ -1,6 +1,6 @@
 # {{REPO_NAME}}
 
-A simple template for Python projects, with CI/CD configured through GitHub Actions.  Compatible with any virtual environment manager (e.g. `uv`, `venv`, `pyenv`, `poetry`, `conda`).
+A simple template for Python projects, with CI/CD configured through GitHub Actions.
 
 
 ## Usage
@@ -16,21 +16,12 @@ A simple template for Python projects, with CI/CD configured through GitHub Acti
 
 > **Note:** For simplicity, I assume you are using [uv](https://docs.astral.sh/uv/getting-started/installation/), but this project is compatible with any virtual environment or package manager (`pip`, `venv`, `poetry`, `pipenv`, `conda`).
 
-If you have not already, create and activate a virtual environment for this project:
 ```bash
+# Create and activate a new virtual environment
 uv venv --python 3.12
 source .venv/bin/activate
-```
 
-Then, install the package:
-```bash
-uv sync
-```
-
-### For Developers
-
-If you plan to contribute to the project, you should also install development dependencies and pre-commit hoooks:
-```bash
+# Install development dependencies and pre-commit hoooks
 uv sync --all-extras
 pre-commit install
 ```
@@ -40,11 +31,9 @@ pre-commit install
 
 | Tool | Description | Runs on |
 | --- | --- | --- |
-| [black](https://github.com/psf/black) | Code formatter | - `git commit` (through `pre-commit`) <br> - `git push` <br> - pull requests |
 | [ruff](https://github.com/astral-sh/ruff) | Code linter | - `git commit` (through `pre-commit`) <br> - `git push` <br> - pull requests |
+| [ty](https://docs.astral.sh/ty/) | Static type checker | - `git commit` <br> - pull requests |
 | [pytest](https://github.com/pytest-dev/pytest) | Unit testing framework | - `git push` <br> - pull requests |
-| [mypy](https://github.com/python/mypy) | Static type checker | - `git push` <br> - pull requests |
-| [pre-commit](https://github.com/pre-commit/pre-commit) | Pre-commit hooks | - `git commit` |
 | [twine](https://github.com/pypa/twine) $\dagger$ | PyPI package uploader | - New release (`git tag`) |
 
 > $\dagger$ Requires enabling the `publish.yaml` workflow.  To activate, move the file from `.github/disabled-workflows/publish.yaml.disabled` to `.github/workflows/publish.yaml`, and set a valid PyPI token as `PYPI_API_TOKEN` in the repo secrets.

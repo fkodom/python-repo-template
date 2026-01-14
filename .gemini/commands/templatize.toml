@@ -10,11 +10,12 @@ I want you to "templatize" a new Python repository (cloned from a GitHub repo te
 2. Install the package, dev dependencies, and pre-commit hooks (see README).
 3. Use `pip list` or `uv pip list` to very which package versions were installed, and pin them in `pyproject.toml` for consistency.  Do not add any new packages to `pyproject.toml` -- just pin the ones that are already listed.
 4. Delete:
-    - this section of the README on templatization
+    - the "usage" section of the README on templatization
     - the `./templatize` script
     - the `Templatize` step in `.github/workflows/test.yaml`
     - the "templatize" slash-command file at `.gemini/commands/templatize.toml`
-5. Commit and push the changes.
+5. Update the README to give a brief description of the project.  If you are unable to infer the description based on the repo, please ask me for more details.
+6. Commit and push the changes.
     ```bash
     git add .
     git commit -m "Templatize"
